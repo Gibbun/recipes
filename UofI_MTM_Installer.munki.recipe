@@ -34,6 +34,8 @@ MUNKI_ICON should be overridden with your icon name.
     <string>com.github.autopkg.munki.UofI_MTM_Installer</string>
     <key>Input</key>
     <dict>
+        <key>DOWNLOAD_URL</key>
+        <string>https://munki.eps.uillinois.edu/Portal/MTM.onboard.pkg</string>
         <key>INCLUDE_PRERELEASES</key>
         <string></string>
         <key>NAME</key>
@@ -88,6 +90,15 @@ MUNKI_ICON should be overridden with your icon name.
     <string>0.5.0</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+            </dict>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>GitHubReleasesInfoProvider</string>
