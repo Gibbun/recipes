@@ -19,19 +19,23 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
     <string>com.github.Gibbun.download.UofI_MTM_Installer</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>GitHubReleasesInfoProvider</string>
-            <key>Arguments</key>
-            <dict>
-                <key>asset_regex</key>
-                <string>^munkitools-3.*?pkg$</string>
-                <key>github_repo</key>
-                <string>munki/munki</string>
-                <key>include_prereleases</key>
-                <string>%INCLUDE_PRERELEASES%</string>
-            </dict>
-        </dict>
+		<dict>
+			<key>Processor</key>
+			<string>com.github.Gibbun.recipes/PkgDistributionCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/</string>
+				<key>destination_file</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.mpkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
+				<key>resources_path</key>
+				<string>%RECIPE_CACHE_DIR%/Resources</string>
+			</dict>
+			<key>SharedProcessorRepoURL</key>
+			<string>https://github.com/Gibbun/recipes</string>
+		</dict>
     </array>
 </dict>
 </plist>
