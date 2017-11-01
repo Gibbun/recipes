@@ -28,23 +28,35 @@ from autopkglib import Processor, ProcessorError
 __all__ = ["PkgDistributionCreator"]
 
 class PkgDistributionCreator(Processor):
-    description = ("Creates a distribution style package. ")
+    description = ("Bundles together munki pkg installers with MTM onboarding pkg. ")
     input_variables = {
-        "distribution_file": {
+        "source_file1": {
             "required": True,
-            "description": ("Path to a distribution file. "),
+            "description": ("Path to a source file (MyCoolPkg1.pkg) "),
         },
-        "resources_path": {
+        "source_file2": {
             "required": True,
-            "description": ("Path to a resources. "),
+            "description": ("Path to a source file (MyCoolPkg2.pkg) "),
         },
-        "source_path": {
+        "source_file3": {
             "required": True,
-            "description": ("Path to a pkg. "),
+            "description": ("Path to a source file (MyCoolPkg3.pkg) "),
         },
-        "destination_file": {
+        "source_file4": {
             "required": True,
-            "description": ("File to be created "),
+            "description": ("Path to a source file (MyCoolPkg4.pkg) "),
+        },
+        "source_file5": {
+            "required": True,
+            "description": ("Path to a source file (MyCoolPkg5.pkg) "),
+        },
+        "source_file6": {
+            "required": True,
+            "description": ("Path to a source file (MyCoolPkg6.pkg) "),
+        },
+        "output_file": {
+            "required": True,
+            "description": ("Name of output file. "),
         },
     }
     output_variables = {
@@ -62,10 +74,13 @@ class PkgDistributionCreator(Processor):
                     "Can't find binary %s: %s" % ('/usr/bin/productbuild', e.strerror))
         try:
             pbcmd = ["/usr/bin/productbuild",
-                      "--distribution", self.env['distribution_file'],
-                      "--resources", self.env['resources_path'],
-                      "--package-path", self.env['source_path'],
-                      self.env['destination_file']]
+                      "--package", self.env['source_file1'],
+                      "--package", self.env['source_file2'],
+                      "--package", self.env['source_file3'],
+                      "--package", self.env['source_file4'],
+                      "--package", self.env['source_file5'],
+                      "--package", self.env['source_file6'],
+                      self.env['output_file']]
             p = subprocess.Popen(pbcmd,
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE)
@@ -75,28 +90,45 @@ class PkgDistributionCreator(Processor):
                 % (e.errno, e.strerror))
         if p.returncode != 0:
             raise ProcessorError("cmmac conversion of %s failed: %s"
-                % (self.env['source_path'], err))
+                % (self.env['output_file'], err))
                 
     def main(self):
-        if os.path.exists(self.env['source_path']):
+        if os.path.exists(self.env['source_file1']):
             try:
-                self.output("Found %s" % self.env['source_path'])
+                self.output("Found %s" % self.env['source_file1'])
             except OSError as e:
                 raise ProcessorError(
-                    "Can't find %s" % (self.env['source_path'], e.strerror))
-        if os.path.exists(self.env['destination_file']):
+                    "Can't find %s" % (self.env['source_file1'], e.strerror))
+        if os.path.exists(self.env['source_file2']):
             try:
-                self.output("Found %s" % self.env['destination_file'])
+                self.output("Found %s" % self.env['source_file2'])
             except OSError as e:
                 raise ProcessorError(
-                    "Can't find %s" % (self.env['destination_file'], e.strerror))
-        if os.path.exists(self.env['distribution_file']):
+                    "Can't find %s" % (self.env['source_file2'], e.strerror))
+        if os.path.exists(self.env['source_file3']):
             try:
-                self.output("Found %s" % self.env['distribution_file'])
-                self.pkgConvert()
+                self.output("Found %s" % self.env['source_file3'])
             except OSError as e:
                 raise ProcessorError(
-                    "Can't find %s" % (self.env['distribution_file'], e.strerror))
+                    "Can't find %s" % (self.env['source_file3'], e.strerror))
+        if os.path.exists(self.env['source_file4']):
+            try:
+                self.output("Found %s" % self.env['source_file4'])
+            except OSError as e:
+                raise ProcessorError(
+                    "Can't find %s" % (self.env['source_file4'], e.strerror))
+        if os.path.exists(self.env['source_file5']):
+            try:
+                self.output("Found %s" % self.env['source_file5'])
+            except OSError as e:
+                raise ProcessorError(
+                    "Can't find %s" % (self.env['source_file5'], e.strerror))
+        if os.path.exists(self.env['source_file6']):
+            try:
+                self.output("Found %s" % self.env['source_file6'])
+            except OSError as e:
+                raise ProcessorError(
+                    "Can't find %s" % (self.env['source_file6'], e.strerror))
 
 if __name__ == '__main__':
     processor = PkgDistributionCreator()
