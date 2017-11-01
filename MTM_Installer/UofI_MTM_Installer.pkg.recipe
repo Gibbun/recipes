@@ -246,6 +246,17 @@ MUNKI_ICON should be overridden with your icon name.
                 <string>%RECIPE_CACHE_DIR%/repack</string>
             </dict>
         </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/Resources</string>
+                <key>pkgdirs</key>
+                <dict/>
+            </dict>
+        </dict>
 	<dict>
 	    <key>Comment</key>
 	    <string>Create distribution file.</string>
