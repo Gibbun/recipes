@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-# Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core recipes.
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Note: munkitools does not include a code signature. If your
+    <string>
+Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core recipes.
+
+Note: munkitools does not include a code signature. If your
 organization requires code signature, it is recommend to internally sign
 the application.
 
