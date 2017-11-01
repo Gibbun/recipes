@@ -97,6 +97,8 @@ MUNKI_ICON should be overridden with your icon name.
             <dict>
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
+                <key>download_dir</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
             </dict>
         </dict>
         <dict>
