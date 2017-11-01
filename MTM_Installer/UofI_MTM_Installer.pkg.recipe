@@ -34,7 +34,7 @@ descending by tag names according to LooseVersion semantics.
 MUNKI_ICON should be overridden with your icon name.
 </string>
     <key>Identifier</key>
-    <string>com.github.autopkg.munki.UofI_MTM_Installer</string>
+    <string>com.github.Gibbun.pkg.UofI_MTM_Installer</string>
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_URL</key>
@@ -91,6 +91,8 @@ MUNKI_ICON should be overridden with your icon name.
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.Gibbun.download.UofI_MTM_Installer</string>
     <key>Process</key>
     <array>
         <dict>
