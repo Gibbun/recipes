@@ -235,7 +235,7 @@ MUNKI_ICON should be overridden with your icon name.
         </dict>
         <dict>
 	    <key>Comment</key>
-	    <string>Download MTM onboarding package to cache folder.</string>
+	    <string>Download MTM onboarding package to cache repack folder.</string>
             <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
@@ -243,7 +243,7 @@ MUNKI_ICON should be overridden with your icon name.
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
                 <key>download_dir</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <string>%RECIPE_CACHE_DIR%/repack</string>
             </dict>
         </dict>
 	<dict>
