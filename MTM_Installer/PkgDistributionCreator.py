@@ -84,7 +84,6 @@ class PkgDistributionCreator(Processor):
             p = subprocess.Popen(pbcmd,
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE)
-            p.communicate()
             (out, err) = p.communicate()
         except OSError as e:
             raise ProcessorError("cmmac execution failed with error code %d: %s"
