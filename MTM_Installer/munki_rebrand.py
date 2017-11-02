@@ -18,45 +18,36 @@
 # https://github.com/autopkg/cgerke-recipes/blob/master/SharedProcessors/PkgDistributionCreator.py
 #   
 
-import os.path
-import subprocess
-import shutil
-
-from glob import glob
+from subprocess import Popen, PIPE
+from os import listdir, stat, chmod, geteuid, mkdir, rename, getcwd
+from os.path import join, isfile, isdir
+from distutils.dir_util import copy_tree
+from shutil import copyfile, rmtree
+from tempfile import mkdtemp
+import fileinput
+import argparse
+import sys
+import re
+import atexit
 from autopkglib import Processor, ProcessorError
 
-__all__ = ["PkgDistributionCreator"]
+__all__ = ["MakeMunki"]
 
-class PkgDistributionCreator(Processor):
-    description = ("Bundles together munki pkg installers with MTM onboarding pkg. ")
+class MakeMunki(Processor):
+    makescript = 'munki-master/code/tools/make_munki_mpkg.sh'
+    description = ("AutoPKG version of make_munki script. ")
     input_variables = {
-        "source_file1": {
+        "root": {
             "required": True,
-            "description": ("Path to a source file (MyCoolPkg1.pkg) "),
+            "description": ("Set the munki source root "),
         },
-        "source_file2": {
+        "recipe_dir": {
             "required": True,
-            "description": ("Path to a source file (MyCoolPkg2.pkg) "),
-        },
-        "source_file3": {
-            "required": True,
-            "description": ("Path to a source file (MyCoolPkg3.pkg) "),
-        },
-        "source_file4": {
-            "required": True,
-            "description": ("Path to a source file (MyCoolPkg4.pkg) "),
-        },
-        "source_file5": {
-            "required": True,
-            "description": ("Path to a source file (MyCoolPkg5.pkg) "),
-        },
-        "source_file6": {
-            "required": True,
-            "description": ("Path to a source file (MyCoolPkg6.pkg) "),
+            "description": ("Set the recipe directory "),
         },
         "output_file": {
             "required": True,
-            "description": ("Name of output file. "),
+            "description": ("Set the output directory "),
         },
     }
     output_variables = {
@@ -65,72 +56,27 @@ class PkgDistributionCreator(Processor):
     __doc__ = description
     source_path = None
 
-    def pkgConvert(self):
-        if os.path.exists('/usr/bin/productbuild'):
-            try:
-                self.output("Found binary %s" % '/usr/bin/productbuild')
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find binary %s: %s" % ('/usr/bin/productbuild', e.strerror))
+    def pkgBuild(self):
+        cmd = [join(self.env['recipe_dir'], makescript),
+               '-r', self.env['root'],
+               '-o', self.env['output_file']]
         try:
-            pbcmd = ["/usr/bin/productbuild",
-                      "--package", self.env['source_file1'],
-                      "--package", self.env['source_file2'],
-                      "--package", self.env['source_file3'],
-                      "--package", self.env['source_file4'],
-                      "--package", self.env['source_file5'],
-                      "--package", self.env['source_file6'],
-                      self.env['output_file']]
-            p = subprocess.Popen(pbcmd,
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.PIPE)
-            (out, err) = p.communicate()
+        group = run_cmd(
+        cmd,
+        retgrep='Distribution.*(?P<munki_pkg>munkitools.*pkg).',
+        verbose=args.verbose)
+        munki_pkg = group.groupdict()['munki_pkg']
         except OSError as e:
-            raise ProcessorError("cmmac execution failed with error code %d: %s"
-                % (e.errno, e.strerror))
-        if p.returncode != 0:
-            raise ProcessorError("cmmac conversion of %s failed: %s"
-                % (self.env['output_file'], err))
-                
+            raise ProcessorError(
+                "Error building munki pkg, e.strerror))
+                    
     def main(self):
-        if os.path.exists(self.env['source_file1']):
             try:
-                self.output("Found %s" % self.env['source_file1'])
+                self.pkgBuild()
             except OSError as e:
                 raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file1'], e.strerror))
-        if os.path.exists(self.env['source_file2']):
-            try:
-                self.output("Found %s" % self.env['source_file2'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file2'], e.strerror))
-        if os.path.exists(self.env['source_file3']):
-            try:
-                self.output("Found %s" % self.env['source_file3'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file3'], e.strerror))
-        if os.path.exists(self.env['source_file4']):
-            try:
-                self.output("Found %s" % self.env['source_file4'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file4'], e.strerror))
-        if os.path.exists(self.env['source_file5']):
-            try:
-                self.output("Found %s" % self.env['source_file5'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file5'], e.strerror))
-        if os.path.exists(self.env['source_file6']):
-            try:
-                self.output("Found %s" % self.env['source_file6'])
-                self.pkgConvert()
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file6'], e.strerror))
+                    "ERROR, e.strerror))
 
 if __name__ == '__main__':
-    processor = PkgDistributionCreator()
+    processor = MakeMunki()
     processor.execute_shell()
