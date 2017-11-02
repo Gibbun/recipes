@@ -10,6 +10,8 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
     <string>com.github.Gibbun.download.munki_rebrand</string>
     <key>Input</key>
     <dict>
+        <key>NAME</key>
+        <string>munki-master</string>
         <key>MUNKIMASTERDOWNLOAD_URL</key>
         <string>https://github.com/munki/munki/archive/master.zip</string>
         <key>DOWNLOAD_URL</key>
@@ -70,7 +72,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <key>archive_path</key>
                 <string>%found_filename%</string>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/munki-master</string>
+                <string>%RECIPE_CACHE_DIR%</string>
             </dict>
         </dict>
         <dict>
