@@ -37,7 +37,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
 				<key>source_file6</key>
 				<string>%RECIPE_CACHE_DIR%/repack/MTM.onboard.pkg</string>
 				<key>output_file</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<string>%NAME%.pkg</string>
 			</dict>
 			<key>SharedProcessorRepoURL</key>
 			<string>https://github.com/Gibbun/recipes</string>
