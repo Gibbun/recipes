@@ -59,6 +59,24 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/munki-master*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%found_filename%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
                 <string>%ICON_DIR%/*.icns</string>
             </dict>
         </dict>
@@ -68,7 +86,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/munki-master/code/apps/Managed Software Center/Managed Software Center/Managed Software Center.icns</string>
+                <string>%RECIPE_CACHE_DIR%/munki-master/code/apps/Managed Software Center/Managed Software Center/Managed Software Center.icns</string>
                 <key>source_path</key>
                 <string>%found_filename%</string>
             </dict>
@@ -79,7 +97,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/munki-master/code/apps/Managed Software Center/Managed Software Center/MSC.icns</string>
+                <string>%RECIPE_CACHE_DIR%/munki-master/code/apps/Managed Software Center/Managed Software Center/MSC.icns</string>
                 <key>source_path</key>
                 <string>%found_filename%</string>
             </dict>
