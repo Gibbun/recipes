@@ -126,6 +126,7 @@ class PkgDistributionCreator(Processor):
         if os.path.exists(self.env['source_file6']):
             try:
                 self.output("Found %s" % self.env['source_file6'])
+                self.pkgConvert()
             except OSError as e:
                 raise ProcessorError(
                     "Can't find %s" % (self.env['source_file6'], e.strerror))
