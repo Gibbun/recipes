@@ -32,8 +32,6 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <string>%MUNKIMASTERDOWNLOAD_URL%</string>
                 <key>download_dir</key>
                 <string>%RECIPE_CACHE_DIR%/downloads</string>
-		<key>Comment</key>
-	    	<string>Icon must be in icns format</string>
                 <key>ICON_DIR</key>
                 <string>%RECIPE_CACHE_DIR%</string>
             </dict>
