@@ -246,7 +246,18 @@ MUNKI_ICON should be overridden with your icon name.
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
                 <key>download_dir</key>
-                <string>%RECIPE_CACHE_DIR%/repack</string>
+                <string>%RECIPE_CACHE_DIR%/downloads</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
             </dict>
         </dict>
     </array>
