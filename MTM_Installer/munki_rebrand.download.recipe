@@ -59,7 +59,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/munki-master*</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/*master*</string>
             </dict>
         </dict>
         <dict>
