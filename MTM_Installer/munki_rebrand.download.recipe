@@ -105,7 +105,31 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <key>source_path</key>
                 <string>%found_filename%</string>
             </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/Build</string>
+            </dict>
+        </dict>
         </dict>	
+		<dict>
+			<key>Processor</key>
+			<string>com.github.Gibbun.recipes.MTM_Installer/make_munki</string>
+			<key>Arguments</key>
+			<dict>
+				<key>root</key>
+				<string>%RECIPE_CACHE_DIR%/munki-master</string>
+				<key>recipe_dir</key>
+				<string>%RECIPE_CACHE_DIR%</string>
+				<key>output_file</key>
+				<string>%RECIPE_CACHE_DIR%/Build</string>
+			</dict>
+			<key>SharedProcessorRepoURL</key>
+			<string>https://github.com/Gibbun/recipes</string>
+		</dict>
     </array>
 </dict>
 </plist>
