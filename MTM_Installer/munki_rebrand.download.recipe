@@ -69,6 +69,8 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <dict>
                 <key>archive_path</key>
                 <string>%found_filename%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/munki-master</string>
             </dict>
         </dict>
         <dict>
