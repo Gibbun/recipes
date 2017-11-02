@@ -103,6 +103,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <key>source_path</key>
                 <string>%found_filename%</string>
             </dict>
+        </dict>	
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -112,7 +113,6 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <string>%RECIPE_CACHE_DIR%/Build</string>
             </dict>
         </dict>
-        </dict>	
 		<dict>
 			<key>Processor</key>
 			<string>com.github.Gibbun.recipes.MTM_Installer/make_munki</string>
