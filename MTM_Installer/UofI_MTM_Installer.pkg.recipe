@@ -25,6 +25,15 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
     <array>
             <dict>
             <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/Build</string>
+            </dict>
+        </dict>
+            <dict>
+            <key>Processor</key>
             <string>GitHubReleasesInfoProvider</string>
             <key>Arguments</key>
             <dict>
@@ -65,35 +74,6 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
 		<key>SharedProcessorRepoURL</key>
 		<string>https://github.com/Gibbun/recipes</string>
 	</dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
-            <key>Arguments</key>
-            <dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/Build</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FileFinder</string>
-            <key>Arguments</key>
-            <dict>
-                <key>pattern</key>
-                <string>UofI_MTM_Installer*</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FileMover</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source</key>
-                <string>/Users/Shared/Jenkins/UofI_MTM_Installer-3.1.0.pkg</string>
-                <key>target</key>
-                <string>%DESTINATION%/%found_filename%</string>
-            </dict>
-        </dict>
     </array>
 </dict>
 </plist>
