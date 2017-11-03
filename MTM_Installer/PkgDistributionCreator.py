@@ -24,6 +24,7 @@ import shutil
 
 from glob import glob
 from autopkglib import Processor, ProcessorError
+from xml.etree import ElementTree as ET
 
 __all__ = ["PkgDistributionCreator"]
 
