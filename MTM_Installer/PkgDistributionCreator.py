@@ -50,9 +50,17 @@ class PkgDistributionCreator(Processor):
             "required": True,
             "description": ("Path to a source file (MyCoolPkg5.pkg) "),
         },
-        "source_file6": {
+         "source_file6": {
             "required": True,
             "description": ("Path to a source file (MyCoolPkg6.pkg) "),
+        },
+        "distribution_file": {
+            "required": True,
+            "description": ("Destination path of distribution file. "),
+        },
+        "package_dir": {
+            "required": True,
+            "description": ("Directory containing source pkgs. "),
         },
         "output_file": {
             "required": True,
@@ -74,12 +82,28 @@ class PkgDistributionCreator(Processor):
                     "Can't find binary %s: %s" % ('/usr/bin/productbuild', e.strerror))
         try:
             pbcmd = ["/usr/bin/productbuild",
+                      "--synthesize",
                       "--package", self.env['source_file1'],
                       "--package", self.env['source_file2'],
                       "--package", self.env['source_file3'],
                       "--package", self.env['source_file4'],
                       "--package", self.env['source_file5'],
                       "--package", self.env['source_file6'],
+                      self.env['distribution_file']]
+            p = subprocess.Popen(pbcmd,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE)
+            (out, err) = p.communicate()
+        except OSError as e:
+            raise ProcessorError("Creation of distribution file failed with error code %d: %s"
+                % (e.errno, e.strerror))
+        if p.returncode != 0:
+            raise ProcessorError("Creation of distribution file %s failed: %s"
+                % (self.env['output_file'], err))
+        try:
+            pbcmd = ["/usr/bin/productbuild",
+                      "--distribution", self.env['distribution_file'],
+                      "--package-path", self.env['package_dir'],
                       self.env['output_file']]
             p = subprocess.Popen(pbcmd,
                                  stdout=subprocess.PIPE,
@@ -126,10 +150,16 @@ class PkgDistributionCreator(Processor):
         if os.path.exists(self.env['source_file6']):
             try:
                 self.output("Found %s" % self.env['source_file6'])
-                self.pkgConvert()
             except OSError as e:
                 raise ProcessorError(
                     "Can't find %s" % (self.env['source_file6'], e.strerror))
+         if os.path.exists(self.env['package_dir']):
+            try:
+                self.output("Found %s" % self.env['package_dir'])
+                self.pkgConvert()
+            except OSError as e:
+                raise ProcessorError(
+                    "Can't find %s" % (self.env['package_dir'], e.strerror))
 
 if __name__ == '__main__':
     processor = PkgDistributionCreator()
