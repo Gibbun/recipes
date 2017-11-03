@@ -64,6 +64,10 @@ class PkgDistributionCreator(Processor):
             "required": True,
             "description": ("Directory containing source pkgs. "),
         },
+        "version": {
+            "required": True,
+            "description": ("Version of final pkg "),
+        },
         "output_file": {
             "required": True,
             "description": ("Name of output file. "),
@@ -111,6 +115,7 @@ class PkgDistributionCreator(Processor):
             pbcmd = ["/usr/bin/productbuild",
                       "--distribution", self.env['distribution_file'],
                       "--package-path", self.env['package_dir'],
+                      "--version", self.env['version'],
                       self.env['output_file']]
             p = subprocess.Popen(pbcmd,
                                  stdout=subprocess.PIPE,
