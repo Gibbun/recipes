@@ -119,6 +119,7 @@ class PkgDistributionCreator(Processor):
         origtree = xml.etree.ElementTree.parse('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
         new_tag = xml.etree.ElementTree.SubElement(origtree.getroot(), 'title')
         new_tag.text = 'Univ. of Illinois Munki Onboarding'
+        origtree.insert(2, new_tag)
         origtree.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
         
     def main(self):
