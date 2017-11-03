@@ -12,6 +12,8 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
     <dict>
         <key>NAME</key>
         <string>UofI_MTM_Installer</string>
+        <key>DESTINATION</key>
+        <string>%RECIPE_CACHE_DIR%/Build</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -87,7 +89,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <key>source</key>
                 <string>%found_filename%</string>
                 <key>target</key>
-                <string>%RECIPE_CACHE_DIR%/Build/%found_filename%</string>
+                <string>%DESTINATION%/%found_filename%</string>
             </dict>
         </dict>
     </array>
