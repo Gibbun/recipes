@@ -101,6 +101,10 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("Creation of distribution file %s failed: %s"
                 % (self.env['output_file'], err))
+        origtree = xml.etree.ElementTree.parse('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        new_tag = xml.etree.ElementTree.SubElement(origtree.getroot(), 'title')
+        new_tag.text = 'Univ. of Illinois Munki Onboarding'
+        origtree.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
         try:
             pbcmd = ["/usr/bin/productbuild",
                       "--distribution", self.env['distribution_file'],
@@ -116,10 +120,6 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))        
-        origtree = xml.etree.ElementTree.parse('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
-        new_tag = xml.etree.ElementTree.SubElement(origtree.getroot(), 'title')
-        new_tag.text = 'Univ. of Illinois Munki Onboarding'
-        origtree.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
         
     def main(self):
         if os.path.exists(self.env['source_file1']):
