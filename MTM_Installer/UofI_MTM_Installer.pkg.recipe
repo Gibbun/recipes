@@ -19,33 +19,48 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
     <string>com.github.Gibbun.download.UofI_MTM_Installer</string>
     <key>Process</key>
     <array>
+            <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^munkitools-3.*?pkg$</string>
+                <key>github_repo</key>
+                <string>munki/munki</string>
+                <key>include_prereleases</key>
+                <string></string>
+            </dict>
+        </dict>
+	<dict>
+		<key>Processor</key>
+		<string>com.github.Gibbun.recipes.MTM_Installer/PkgDistributionCreator</string>
+		<key>Arguments</key>
 		<dict>
-			<key>Processor</key>
-			<string>com.github.Gibbun.recipes.MTM_Installer/PkgDistributionCreator</string>
-			<key>Arguments</key>
-			<dict>
-				<key>source_file1</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkitools_core.pkg</string>
-				<key>source_file2</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkitools_admin.pkg</string>
-				<key>source_file3</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkitools_app.pkg</string>
-				<key>source_file4</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkitools_app_usage.pkg</string>
-				<key>source_file5</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkitools_launchd.pkg</string>
-				<key>source_file6</key>
-				<string>%RECIPE_CACHE_DIR%/repack/munkionboard.pkg</string>
-				<key>distribution_file</key>
-				<string>%RECIPE_CACHE_DIR%/distribution.xml</string>
-				<key>package_dir</key>
-				<string>%RECIPE_CACHE_DIR%/repack/</string>
-				<key>output_file</key>
-				<string>%NAME%.pkg</string>
-			</dict>
-			<key>SharedProcessorRepoURL</key>
-			<string>https://github.com/Gibbun/recipes</string>
+			<key>source_file1</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_core.pkg</string>
+			<key>source_file2</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_admin.pkg</string>
+			<key>source_file3</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_app.pkg</string>
+			<key>source_file4</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_app_usage.pkg</string>
+			<key>source_file5</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_launchd.pkg</string>
+			<key>source_file6</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkionboard.pkg</string>
+			<key>distribution_file</key>
+			<string>%RECIPE_CACHE_DIR%/distribution.xml</string>
+			<key>package_dir</key>
+			<string>%RECIPE_CACHE_DIR%/repack/</string>
+			<key>version</key>
+			<string>%version%</string>
+			<key>output_file</key>
+			<string>%NAME%-%version.pkg</string>
 		</dict>
+		<key>SharedProcessorRepoURL</key>
+		<string>https://github.com/Gibbun/recipes</string>
+	</dict>
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
