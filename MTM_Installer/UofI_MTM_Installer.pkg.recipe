@@ -78,7 +78,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>UofI_MTM_Installer*</string>
+                <string>~/UofI_MTM_Installer*</string>
             </dict>
         </dict>
         <dict>
