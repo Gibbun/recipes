@@ -117,12 +117,10 @@ class PkgDistributionCreator(Processor):
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))
 
-xmlfile = ET.parse(self.env['distribution_file'])
-a = xmlfile.getroot()
-f = "<title>University of Illinois MTM Onboarding</title>"
-a.insert(1, f)
-print ET.tostring(a)
-
+root = etree.Element('self.env['distribution_file']')
+child = etree.Element('child')
+root.append(child)
+    
     def main(self):
         if os.path.exists(self.env['source_file1']):
             try:
