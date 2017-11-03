@@ -120,7 +120,7 @@ class PkgDistributionCreator(Processor):
         root = tree.getroot()
         child = ET.SubElement(root, 'title')
         child.text = 'My Awesome App'
-        ET.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        root.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
     
     def main(self):
         if os.path.exists(self.env['source_file1']):
