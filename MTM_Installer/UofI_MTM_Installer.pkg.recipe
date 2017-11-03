@@ -89,7 +89,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
             <key>Arguments</key>
             <dict>
                 <key>source</key>
-                <string>%USERHOMEDIR%/%found_filename%</string>
+                <string>/Users/Shared/Jenkins/UofI_MTM_Installer-3.1.0.pkg</string>
                 <key>target</key>
                 <string>%DESTINATION%/%found_filename%</string>
             </dict>
