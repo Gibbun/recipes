@@ -150,16 +150,10 @@ class PkgDistributionCreator(Processor):
         if os.path.exists(self.env['source_file6']):
             try:
                 self.output("Found %s" % self.env['source_file6'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['source_file6'], e.strerror))
-         if os.path.exists(self.env['package_dir']):
-            try:
-                self.output("Found %s" % self.env['package_dir'])
                 self.pkgConvert()
             except OSError as e:
                 raise ProcessorError(
-                    "Can't find %s" % (self.env['package_dir'], e.strerror))
+                    "Can't find %s" % (self.env['source_file6'], e.strerror))
 
 if __name__ == '__main__':
     processor = PkgDistributionCreator()
