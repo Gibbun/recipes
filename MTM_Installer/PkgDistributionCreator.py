@@ -116,10 +116,9 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))
-
-root = etree.Element(self.env['distribution_file'])
-child = etree.Element('<title>My Awesome App</title>')
-root.append(child)
+        root = etree.Element(self.env['distribution_file'])
+        child = etree.Element('<title>My Awesome App</title>')
+        root.append(child)
     
     def main(self):
         if os.path.exists(self.env['source_file1']):
