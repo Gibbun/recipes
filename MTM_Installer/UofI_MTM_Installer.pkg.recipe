@@ -69,7 +69,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
 			<key>version</key>
 			<string>%version%</string>
 			<key>output_file</key>
-			<string>%RECIPE_CACHE_DIR%/Build/%NAME%-%version%.pkg</string>
+			<string>%DESTINATION%/%NAME%-%version%.pkg</string>
 		</dict>
 		<key>SharedProcessorRepoURL</key>
 		<string>https://github.com/Gibbun/recipes</string>
