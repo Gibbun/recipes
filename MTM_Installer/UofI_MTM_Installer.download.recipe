@@ -38,7 +38,7 @@ MUNKI_ICON should be overridden with your icon name.
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_URL</key>
-        <string>https://munki.eps.uillinois.edu/Portal/MTM.onboard.pkg</string>
+        <string>https://munki.illinois.edu/myawesomepackage.pkg</string>
         <key>INCLUDE_PRERELEASES</key>
         <string></string>
         <key>NAME</key>
