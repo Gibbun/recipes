@@ -21,7 +21,7 @@
 import os.path
 import subprocess
 import shutil
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree
 
 from glob import glob
 from autopkglib import Processor, ProcessorError
