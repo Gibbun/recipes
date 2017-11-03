@@ -117,7 +117,9 @@ class PkgDistributionCreator(Processor):
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))
         root = etree.Element('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        self.output(root)
         child = etree.Element('<title>My Awesome App</title>')
+        self.output(child)
         root.append(child)
     
     def main(self):
