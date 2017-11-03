@@ -13,7 +13,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
         <key>NAME</key>
         <string>UofI_MTM_Installer</string>
         <key>USERHOMEDIR</key>
-        <string>/Users/Shared/AutoPkg</string>
+        <string>/Users/Shared/Jenkins</string>
         <key>DESTINATION</key>
         <string>%RECIPE_CACHE_DIR%/Build</string>
     </dict>
