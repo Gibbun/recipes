@@ -101,10 +101,11 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("Creation of distribution file %s failed: %s"
                 % (self.env['output_file'], err))
-        origtree = xml.etree.ElementTree.parse('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        distfile = self.env['distribution_file']
+        origtree = xml.etree.ElementTree.parse(distfile)
         new_tag = xml.etree.ElementTree.SubElement(origtree.getroot(), 'title')
         new_tag.text = 'Univ. of Illinois Munki Onboarding'
-        origtree.write('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        origtree.write(distfile)
         try:
             pbcmd = ["/usr/bin/productbuild",
                       "--distribution", self.env['distribution_file'],
