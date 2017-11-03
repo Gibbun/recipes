@@ -21,7 +21,7 @@
 import os.path
 import subprocess
 import shutil
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from glob import glob
 from autopkglib import Processor, ProcessorError
@@ -116,11 +116,10 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))
-        root = etree.Element('/Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
-        self.output(root)
-        child = etree.Element('<title>My Awesome App</title>')
-        self.output(child)
-        root.append(child)
+        tree = ET.parse('Users/Shared/AutoPkg/Cache/com.github.Gibbun.pkg.UofI_MTM_Installer/distribution.xml')
+        root = tree.getroot()
+        child = ET.SubElement(root, 'title')
+        child.text = 'My Awesome App'
     
     def main(self):
         if os.path.exists(self.env['source_file1']):
