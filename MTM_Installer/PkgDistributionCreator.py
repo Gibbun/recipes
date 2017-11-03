@@ -120,7 +120,7 @@ class PkgDistributionCreator(Processor):
         root = tree.getroot()
         child = ET.SubElement(root, 'title')
         child.text = 'My Awesome App'
-        print ET.tostring(root)
+        self.output(ET.tostring(root))
     
     def main(self):
         if os.path.exists(self.env['source_file1']):
