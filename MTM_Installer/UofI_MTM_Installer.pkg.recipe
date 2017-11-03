@@ -15,7 +15,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
         <key>USERHOMEDIR</key>
         <string>/Users/Shared/Jenkins</string>
         <key>DESTINATION</key>
-        <string>%RECIPE_CACHE_DIR%/Build</string>
+        <string>/Users/Shared/Jenkins/Desktop/munkirepo/Onboarding/Raw</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
