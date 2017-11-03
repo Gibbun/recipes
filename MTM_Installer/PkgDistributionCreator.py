@@ -21,10 +21,10 @@
 import os.path
 import subprocess
 import shutil
+import xml.etree.ElementTree as ET
 
 from glob import glob
 from autopkglib import Processor, ProcessorError
-from xml.etree import ElementTree as ET
 
 __all__ = ["PkgDistributionCreator"]
 
