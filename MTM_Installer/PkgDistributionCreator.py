@@ -115,7 +115,13 @@ class PkgDistributionCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("cmmac conversion of %s failed: %s"
                 % (self.env['output_file'], err))
-                
+
+xmlfile = ET.parse(self.env['distribution_file'])
+a = xmlfile.getroot()
+f = "<title>University of Illinois MTM Onboarding</title>"
+a.insert(1, f)
+print ET.tostring(a)
+
     def main(self):
         if os.path.exists(self.env['source_file1']):
             try:
