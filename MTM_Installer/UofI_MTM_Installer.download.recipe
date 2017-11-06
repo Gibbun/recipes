@@ -4,8 +4,10 @@
 <dict>
     <key>Description</key>
     <string>
-Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core recipes.
+Modified version of code and concepts from munkitools3.munki.recipe in the AutoPKG core recipes.
+It is more or less the MunkiTools3 recipe but I added a step to also download the UofI MTM onboarding pkg.
 
+---Below is the original recipe notes---
 Note: munkitools does not include a code signature. If your
 organization requires code signature, it is recommend to internally sign
 the application.
