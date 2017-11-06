@@ -31,6 +31,7 @@ Borrowed code and concepts from munkitools3.munki.recipe in the AutoPKG core rec
                 <key>pkgroot</key>
                 <string>%RECIPE_CACHE_DIR%/Build</string>
 		<key>pkgdirs</key>
+                <dict/>
             </dict>
         </dict>
         <dict>
