@@ -16,8 +16,8 @@
 # *** Drew Coobs <coobs1@illinois.edu> ***
 # Modified version of Chris Gerke's PkgDistributionCreator script
 # https://github.com/autopkg/cgerke-recipes/blob/master/SharedProcessors/PkgDistributionCreator.py
-# This will take a Munki tools installer, split it up back into its individual component pkgs
-# download the UofI MTM onboarding pkg, and then reconsolidate all the pkgs into a single distribution pkg
+# This will take six specified pkgs (in this case, designed for individual Munki tools installers and MTM onboarding pkg)
+# and then reconsolidate all the pkgs into a single distribution pkg
 
 import os.path
 import subprocess
